@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  h1= title
+  div
+  ul
+  each city in cities
+    li 
+      a(href=city.url) #{city.city} 
+      
+  else
+    li Error retrieving list of cities
+
+
+
+
+
+
+
+
+
+
+
+

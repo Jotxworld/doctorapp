@@ -1,0 +1,46 @@
+extends layout
+
+block content
+  h1= title
+  form(method='POST' action='')       
+   div.panel
+     div.form-group
+      legend Qualification Details
+      label(for='qualification') Qualification:
+      select.form-control#qualification(name='qualification')
+       if qualification
+        option.form-control#bachelor(value='Bachelor of Science' selected=(qualification.qualification==='Bachelor of Science')? 'selected': false) Bachelor of Science
+        option.form-control#doctorate(value='Doctorate' selected=(qualification.qualification==='Doctorate')? 'selected': false) Doctorate
+       else
+        option.form-control#bachelor(value='Bachelor of Science') Bachelor of Science
+        option.form-control#doctorate(value='Doctorate') Doctorate
+     div.form-group
+      label(for='qualificationyear') Year Acquired:
+      input.form-control#qualificationyear(type='number'  placeholder='Enter year of qualification' name='qualificationyear' min='1900' max='2090' value=(undefined===qualification? '':qualification.yearacquired))
+     div.form-group 
+      label(for='yearsofexperience') Years Of Experience:
+      input.form-control#yearsofexperience(type='number'  placeholder='Years of experience' name='yearsofexperience' min='0' max='100' value=(undefined===qualification? '':qualification.yearsofexperience))
+     div.form-group
+      label(for='spec') Area Of Specialization:
+      select#spec.form-control(name='spec')
+       if special
+        for spec in specialization
+         option.form-control#spec(value=spec._id selected=(special===spec.areaofspecialization)? 'selected': false) #{spec.areaofspecialization}
+       else
+        for spec in specialization
+         option.form-control#spec(value=spec._id) #{spec.areaofspecialization}
+   div.form-group
+   button.pull-right.btn.btn-primary(type='submit') Update   
+ 
+  if errors 
+   ul
+    for error in errors
+     li!= error.msg  
+  script(src='javascripts/myApp.js')
+  script(src='javascripts/myController.js')
+  script(src='javascripts/test.js')
+      
+    
+   
+  
+

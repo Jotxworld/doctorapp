@@ -1,0 +1,165 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  legend Registration Page
+  section(ng-init='tab=1')
+   ul(class='nav nav-pills')
+    li(ng-class='{active: tab==1}')
+     a(href ng-click='tab =1') Biodata
+    li(ng-class='{active: tab==2}')
+     a(href ng-click='tab = 2') Qualification
+    li(ng-class='{active: tab==3}')
+     a(href ng-click='tab = 3') Area of Specialization
+    li(ng-class='{active: tab==4}')
+     a(href ng-click='tab = 4') Contact 
+    li(ng-class='{active: tab==5}')
+     a(href ng-click='tab = 5') Location
+    li(ng-class='{active: tab==6}')
+     a(href ng-click='tab = 6') Sign Up Details
+
+  form(method='POST' action='')   
+   div.panel(ng-show = 'tab==1')
+     div.form-group
+      legend Doctor's Basic Information
+      label(for='firstname') Firstname*:
+      input#firstname.form-control(type='text', placeholder='First name (Mike)' name='firstname'  value=(undefined===drbiodata? '':drbiodata.firstname) required='true')
+     div.form-group
+      label(for='lastname') Lastname:
+      input#lastname.form-control(type='text', placeholder='Family name (surname)' name='lastname' value=(undefined===drbiodata ? '': drbiodata.lastname) required='true')
+     div.form-group 
+      label(for='othernames') Othernames:
+      input#othernames.form-control(type='text', placeholder='Other name(s)' name='othernames' value=(undefined===drbiodata ? '':drbiodata.othernames))
+     div.form-group 
+      label(for='dateofbirth') Date of birth:
+      input#date_of_birth.form-control(type='date', placeholder='mm/dd/yyyy' name='dateofbirth' required='true' value=(undefined===drbiodata? '':drbiodata.dateofbirth))
+     div.form-group 
+      label(for='sex') Sex:
+      select.form-control#sex(name='sex')
+       if drbiodata
+        option.form-control
+        option.form-control#Male(value='Male' selected=(drbiodata.sex==='Male')? 'selected': false) Male
+        option.form-control#Female(value='Female' selected=(drbiodata.sex==='Female')? 'selected': false) Female
+       else
+        option.form-control
+        option.form-control#Male(value='Male') Male
+        option.form-control#Female(value='Female') Female
+     div.form-group
+      label(for='marital_status') Marital Status:
+      select.form-control#marital_status(name='marital_status') 
+       if drbiodata
+        option.form-control
+        option.form-control#single(value='Single' selected=(drbiodata.maritalstatus==='Single')? 'selected': false) Single
+        option.form-control#married(value='Married' selected=(drbiodata.maritalstatus==='Married')? 'selected': false) Married
+        option.form-control#widowed(value='Widowed' selected=(drbiodata.maritalstatus==='Widowed')? 'selected': false) Widowed
+       else
+        option.form-control
+        option.form-control#single(value='Single') Single
+        option.form-control#married(value='Married') Married
+        option.form-control#widowed(value='Widowed') Widowed
+     div.form-group
+      button.btn.btn-primary(type='button') Next
+
+     
+   div.panel(ng-show = 'tab==2')
+     div.form-group
+      legend Qualification Details
+      label(for='qualification') Qualification:
+      select.form-control#qualification(name='qualification')
+       if qualification
+        option.form-control#bachelor(value='Bachelor of Science' selected=(qualification.qualification==='Bachelor of Science')? 'selected': false) Bachelor of Science
+        option.form-control#doctorate(value='Doctorate' selected=(qualification.qualification==='Doctorate')? 'selected': false) Doctorate
+       else
+        option.form-control#bachelor(value='Bachelor of Science') Bachelor of Science
+        option.form-control#doctorate(value='Doctorate') Doctorate
+     div.form-group
+      label(for='qualificationyear') Year Acquired:
+      input.form-control#qualificationyear(type='number'  placeholder='Enter year of qualification' name='qualificationyear' min='1900' max='2090' value=(undefined===qualification? '':qualification.yearacquired))
+     div.form-group 
+      label(for='yearsofexperience') Years Of Experience:
+      input.form-control#yearsofexperience(type='number'  placeholder='Years of experience' name='yearsofexperience' min='0' max='100' value=(undefined===qualification? '':qualification.yearsofexperience),)
+     div.form-group
+      button.btn.btn-primary(type='button') Back
+      button.btn.btn-primary(type='button') Next
+
+   div.panel(ng-show = 'tab==3')
+     div.form-group
+      legend Specialization
+      label(for='spec') Area Of Specialization:
+      select#spec.form-control(name='spec')
+       if special
+        for spec in specialization
+         option.form-control#spec(value=spec._id selected=(special===spec.areaofspecialization)? 'selected': false) #{spec.areaofspecialization}
+       else
+        for spec in specialization
+         option.form-control#spec(value=spec._id) #{spec.areaofspecialization}
+     div.form-group
+      button.btn.btn-primary(type='button' pull-right) Back
+      button.btn.btn-primary(type='button') Next
+
+   div.panel(ng-show = 'tab==4')
+     div.form-group
+      legend Contact Information
+      label(for='organization') Name of Organization:
+      input#office.form-control(type='text', placeholder='Enter Name Of Organization' name='organization' value=(undefined===draddress? '':draddress.practicefirm))
+     div.form-group 
+      label(for='address_one') Address 1:
+      input#address_one.form-control(type='textarea', placeholder='Enter Street Address 1)' name='address_one' value=(undefined===draddress? '':draddress.officestradd_one))
+     div.form-group 
+      label(for='address_two') Address 2:
+      input#address_two.form-control(type='text', placeholder='Enter Street Address 2' name='address_two' value=(undefined===draddress? '':draddress.officestradd_two))
+     div.form-group
+      label(for='mobile_phone_number') Phone Number (Mobile):
+      input#mobile_phone_number.form-control(type='number', placeholder='Enter Phone Number' name='mobile_phone_number' value=(undefined===draddress? '':draddress.mobilephoneno))
+     div.form-group
+      label(for='office_phone_number') Phone Number (Office):
+      input#office_phone_number.form-control(type='number', placeholder='Enter Phone Number' name='office_phone_number' value=(undefined===draddress? '':draddress.officenumber))
+     div.form-group
+      label(for='email_address') Email Address:
+      input#email_address.form-control(type='email', placeholder='Enter Email Address' name='email_address' value=(undefined===draddress? '':draddress.dremail))
+     div.form-group
+      button.btn.btn-primary(type='button') Back
+      button.btn.btn-primary#next(type='button' onclick='return checkVal()') Next
+
+   div.panel(ng-show = 'tab==5')
+     div.form-group
+      legend Location
+      label(for='office_city') City:
+      select.form-control#office_city(name='city')
+       if drbiodatacity
+        each cities in city
+         option.form-control#abuja(value=cities._id selected=(drbiodatacity.city===cities.city)? 'selected': false) #{cities.city} 
+       else
+        each cities in city
+         option.form-control#abuja(value=cities._id) #{cities.city} 
+     div.form-group
+      button.btn.btn-primary(type='button') Back
+      button.btn.btn-primary(type='button') Next
+      
+   div.panel(ng-show = 'tab==6')
+     div.form-group
+      legend Account Login Details
+      label(for='username') Username:
+      input.form-control#username(type='text' placeholder='Enter Your Unique Username Here' name='username' required='true' min='7' max='15' value=(undefined===drlogin? '':drlogin))
+      label(for='password') Password:
+      input.form-control#password(name='password' placeholder='Enter Password Here' type='password' required='true' min='7' max='15')
+      label(for='re_enter_password') Re-type Password:
+      input.form-control#re_enter_password(name='re_enter_password' placeholder='Re-type Password Here' type='password' required='true' min='7' max='15')  
+     div.form-group
+      button.btn.btn-primary(type='button') Back
+   div.form-group
+   button.pull-right.btn.btn-primary(type='submit') Save   
+ 
+  if errors 
+   ul
+    for error in errors
+     li!= error.msg  
+  script(src='javascripts/myApp.js')
+  script(src='javascripts/myController.js')
+  script(src='javascripts/test.js')
+      
+    
+   
+  
+

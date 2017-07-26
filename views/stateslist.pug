@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  h1= title
+  div
+  ul
+  each state in states
+    li 
+      a(href=state.url) #{state.state} 
+      
+  else
+    li Error retrieving list of states
+
+
+
+
+
+
+
+
+
+
+
+

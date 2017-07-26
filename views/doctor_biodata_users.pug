@@ -1,0 +1,39 @@
+extends layout
+
+block content
+   h1=title
+   legend Doctor's Biodata 
+   
+   div.panel
+    p #[strong Name:] #{drbiodata.name} 
+    p #[strong Other names:] #{drbiodata.othernames}
+    P #[strong Sex:] #{drbiodata.sex}
+    p #[strong Marital Status:] #{drbiodata.maritalstatus}  
+   div.panel
+    p #[strong Qualification:] #{qualification.qualification}
+    p #[strong Years of Experience:] #{qualification.yearsofexperience}
+    p #[strong Area of Specialization] #{specialization}
+   div.panel
+    p #[strong Name of Organization:] #{draddress.practicefirm}
+    p #[strong Office Address One:]  #{draddress.officestradd_one}
+    p #[strong Office Address Two:] #{draddress.officestradd_two}
+    p #[strong Phone Number (Mobile):] #{draddress.mobilephoneno}
+    p #[strong Phone Number (Office):] #{draddress.officenumber}
+    p #[strong City:] #{city.city}
+    p #[strong State:]#{state.state}
+    h6 #[strong Email Address:] #{draddress.dremail}      
+   if drbiodata
+   else
+    li Doctor's Details currently not available
+
+
+
+
+
+
+
+
+
+
+
+

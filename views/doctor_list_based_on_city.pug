@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1= title
+  legend Currently Registered Medical Practioners In #{city.city} City
+  each doctor in doctorlist 
+   div.panel
+    p #[strong Doctor's Name:] 
+      a(href= doctor.drbiodata.url) #{doctor.drbiodata.name}
+    p #[strong Doctor's Date of Birth:] #{doctor.drbiodata.dateofbirth}
+  
+       
+  else
+    li There are no registered Medical Practioners in this city.
+
+
+
+
+
+
+
+
+
+
+
+

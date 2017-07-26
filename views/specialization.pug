@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  h1= title
+  div
+  ul
+  each author in specialization
+    li 
+      a(href=author.url) #{author.areaofspecialization} 
+      
+  else
+    li There are no specialization.
+
+
+
+
+
+
+
+
+
+
+
+

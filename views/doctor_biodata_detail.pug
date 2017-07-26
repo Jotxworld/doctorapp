@@ -1,0 +1,45 @@
+extends layout
+
+block content
+   h1=title
+   legend Doctor's Biodata 
+   a(href=drbiodata.url +'/update') Edit Doctor Information
+   div.panel
+    p #[strong First name:] #{drbiodata.firstname}
+    p #[strong Last name:] #{drbiodata.lastname}  
+    p #[strong Other names:] #{drbiodata.othernames}
+    p #[strong Doctor's Date of Birth:] #{drbiodata.dateofbirth}
+    P #[strong Sex:] #{drbiodata.sex}
+    p #[strong Marital Status:] #{drbiodata.maritalstatus}
+   a(href=qualification.url +'/update') Edit Qualification and Specialization  
+   div.panel
+    p #[strong Qualification:] #{qualification.qualification}
+    p #[strong Qualification Year:] #{qualification.yearacquired}
+    p #[strong Years of Experience:] #{qualification.yearsofexperience}
+    p #[strong Area of Specialization] #{specialization}
+   a(href=draddress.url +'/update') Edit Address and Location  
+   div.panel
+    p #[strong Name of Organization:] #{draddress.practicefirm}
+    p #[strong Office Address One:]  #{draddress.officestradd_one}
+    p #[strong Office Address Two:] #{draddress.officestradd_two}
+    p #[strong Phone Number (Mobile):] #{draddress.mobilephoneno}
+    p #[strong Phone Number (Office):] #{draddress.officenumber}
+    p #[strong City:] #{city.city}
+    p #[strong State:]#{state.state}
+    p #[strong Email Address:] #{draddress.dremail}
+      
+   if drbiodata
+   else
+    li Doctor's Details currently not available
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,58 @@
+extends layout
+
+block content
+  h1= title
+  
+  form(method='POST' action='')   
+   div.panel
+     div.form-group
+      legend Doctor's Basic Information
+      label(for='firstname') Firstname*:
+      input#firstname.form-control(type='text', placeholder='First name (Mike)' name='firstname'  value=(undefined===drbiodata? '':drbiodata.firstname) required='true')
+     div.form-group
+      label(for='lastname') Lastname:
+      input#lastname.form-control(type='text', placeholder='Family name (surname)' name='lastname' value=(undefined===drbiodata ? '': drbiodata.lastname) required='true')
+     div.form-group 
+      label(for='othernames') Othernames:
+      input#othernames.form-control(type='text', placeholder='Other name(s)' name='othernames' value=(undefined===drbiodata ? '':drbiodata.othernames))
+     div.form-group 
+      label(for='dateofbirth') Date of birth:
+      input#date_of_birth.form-control(type='date', placeholder='mm/dd/yyyy' name='dateofbirth' required='true' value=(undefined===drbiodata? '':drbiodata.dateofbirth))
+     div.form-group 
+      label(for='sex') Sex:
+      select.form-control#sex(name='sex')
+       if drbiodata
+        option.form-control
+        option.form-control#Male(value='Male' selected=(drbiodata.sex==='Male')? 'selected': false) Male
+        option.form-control#Female(value='Female' selected=(drbiodata.sex==='Female')? 'selected': false) Female
+       else
+        option.form-control
+        option.form-control#Male(value='Male') Male
+        option.form-control#Female(value='Female') Female
+     div.form-group
+      label(for='marital_status') Marital Status:
+      select.form-control#marital_status(name='marital_status') 
+       if drbiodata
+        option.form-control
+        option.form-control#single(value='Single' selected=(drbiodata.maritalstatus==='Single')? 'selected': false) Single
+        option.form-control#married(value='Married' selected=(drbiodata.maritalstatus==='Married')? 'selected': false) Married
+        option.form-control#widowed(value='Widowed' selected=(drbiodata.maritalstatus==='Widowed')? 'selected': false) Widowed
+       else
+        option.form-control
+        option.form-control#single(value='Single') Single
+        option.form-control#married(value='Married') Married
+        option.form-control#widowed(value='Widowed') Widowed
+   div.form-group   
+   button.pull-right.btn.btn-primary(type='submit') Update   
+ 
+  if (errors===undefined)
+  else  
+   ul
+    for error in errors
+     li!= error.msg  
+
+      
+    
+   
+  
+

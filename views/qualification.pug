@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  h1= title
+  label #{drbiodata.firstname}
+  p Welcome to #{title}
+  legend Registration Page
+  form(method='POST' action='')   
+   div.panel
+     div.form-group
+      legend Qualification Details
+      label(for='qualification') Qualification:
+      select.form-control#qualification(ng-model='qualification')
+       option.form-control#bachelor BSc
+       option.form-control#doctorate PHD
+     div.form-group
+      label(for='qualificationyear') Year Acquired:
+      input.form-control#qualificationyear(type='number'  placeholder='Enter year of qualification' name='qualificationyear' min='1900' max='2090' required='true')
+     div.form-group 
+      label(for='yearsofexperience') Years Of Experience:
+      input.form-control#yearsofexperience(type='number'  placeholder='Years of experience' name='yearsofexperience' min='0' max='100' required='true')
+     div.form-group
+      label(for='specialization') Area Of Specialization:
+      select.form-control#specialization_select(required='true')
+       each spec in specialization
+        option.form-control#specialization_select #{spec.areaofspecialization}
+     div.form-group
+      button.btn.btn-primary(type='button') Back
+      button.btn.btn-primary(type='button') Next
+   
+   button.btn.btn-primary(type='submit') Save   
+ 
+  if (errors===undefined)
+  else  
+   ul
+    for error in errors
+     li!= error.msg  
+  
+      
+    
+   
+  
+

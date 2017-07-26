@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1= title
+  legend Currently Registered #{specialization.areaofspecialization}
+  each doctor in qualification 
+   div.panel
+    p #[strong Doctor's Name:] 
+      a(href= doctor.drbiodata.url) #{doctor.drbiodata.name}
+    p #[strong Doctor's Date of Birth:] #{doctor.drbiodata.dateofbirth}
+  
+       
+  else
+    li There are no Doctors for this specialization currently.
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,48 @@
+extends layout
+
+block content
+  h1= title
+  
+  form(method='POST' action='')   
+   div.panel
+     div.form-group
+      legend Contact Information
+      label(for='organization') Name of Organization:
+      input#office.form-control(type='text', placeholder='Enter Name Of Organization' name='organization' value=(undefined===draddress? '':draddress.practicefirm))
+     div.form-group 
+      label(for='address_one') Address 1:
+      input#address_one.form-control(type='textarea', placeholder='Enter Street Address 1)' name='address_one' value=(undefined===draddress? '':draddress.officestradd_one))
+     div.form-group 
+      label(for='address_two') Address 2:
+      input#address_two.form-control(type='text', placeholder='Enter Street Address 2' name='address_two' value=(undefined===draddress? '':draddress.officestradd_two))
+     div.form-group
+      label(for='mobile_phone_number') Phone Number (Mobile):
+      input#mobile_phone_number.form-control(type='number', placeholder='Enter Phone Number' name='mobile_phone_number' value=(undefined===draddress? '':draddress.mobilephoneno))
+     div.form-group
+      label(for='office_phone_number') Phone Number (Office):
+      input#office_phone_number.form-control(type='number', placeholder='Enter Phone Number' name='office_phone_number' value=(undefined===draddress? '':draddress.officenumber))
+     div.form-group
+      label(for='email_address') Email Address:
+      input#email_address.form-control(type='email', placeholder='Enter Email Address' name='email_address' value=(undefined===draddress? '':draddress.dremail))
+     div.form-group
+      label(for='office_city') City:
+      select.form-control#office_city(name='city')
+       if drbiodatacity
+        each cities in city
+         option.form-control#abuja(value=cities._id selected=(drbiodatacity.city===cities.city)? 'selected': false) #{cities.city} 
+       else
+        each cities in city
+         option.form-control#abuja(value=cities._id) #{cities.city} 
+   div.form-group
+   button.pull-right.btn.btn-primary(type='submit') Update   
+ 
+  if errors 
+   ul
+    for error in errors
+     li!= error.msg  
+  
+      
+    
+   
+  
+

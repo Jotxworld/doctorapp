@@ -1,0 +1,37 @@
+extends layout
+block content
+ h1= title
+ p Welcome to #{title}
+ div.container
+  div(id='myCarousel' class='carousel slide' data-ride='carousel')
+   ol(class='carousel-indicators')
+    li(data-target='#myCarousel' data-slide-to='0' class='active')
+    li(data-target='#myCarousel' data-slide-to='1')
+    li(data-target='#myCarousel' data-slide-to='2')
+   div(class='carousel-inner')
+    div(class='item active')
+     img(src='images/6.jpg' alt='First Picture' style='width:100%')
+    div(class='item')
+     img(src='images/7.jpg' alt='Second Picture' style='width:100%')
+    div(class='item')
+     img(src='images/8.jpg' alt='Third Picture' style='width:100%')
+   a(class='left carousel-control' href='#myCarousel' data-slide='prev')
+    span(glyphicon glyphicon-chevron-left)
+    span.sr-only Previous
+   a(class='right carousel-control' href='#myCarousel' data-slide='next')
+    span(glyphicon glyphicon-chevron-right)
+    span.sr-only Next
+ p
+ div
+  p We are glad to meet you need. Everyone has to right to have access to a medical practioner, specialist in 
+    all medical fields. Take advantage of this opportunity to have your own doctor or specialist. Research shows that
+    over 90% of Nigerians have no personal medical practioner that can be called in within minutes in time of need.
+
+  p This is led to the death of millions of Nigerians, both children and adults. Mortality rate has increased drastically
+    just because a lot of Nigerians do not have access to good medical recommendations in highly critical moments. A lot of children have died due to self precisions that many Nigerians have resulted into. We hope to maximize the
+    availability of the internet to help reduce the increasing death rate resulting from ignorance and non accessiblity to
+    experienced and reputable medical practioners.
+ div
+  p Your health is our concern. Meet a doctor or specialist now!!!
+
+  
