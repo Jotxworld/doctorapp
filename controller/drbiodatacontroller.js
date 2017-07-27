@@ -11,6 +11,7 @@ var DrAreaOfSpecialization = require('../models/drareaofspecialization');
 var DrLocationByCity =  require('../models/drlocationbycity');
 var DrCity = require('../models/drcity');
 var DrLogin = require('../models/drlogin');
+var nodemailer = require('nodemailer');
 
 //var async = require('async');
 /*exports.index= function(req,res){
@@ -197,7 +198,8 @@ exports.biodata_create_post =function(req,res,next){
                                       console.log('Error Querying Database:'+err);
                                                         return next(err);
                                   }else{
-                                       res.render('biodata', { drbiodata: drbiodata, title: 'DoctorApp', draddress: draddr, drlogin: drlog, qualification: drqual, specialization: specialization_list, errors:errors, city:city_list});   
+                                      // res.render('biodata', { drbiodata: drbiodata, title: 'DoctorApp', draddress: draddr, drlogin: drlog, qualification: drqual, specialization: specialization_list, errors:errors, city:city_list}); 
+                                       res.render('biodata', { drbiodata: drbiodata, title: 'DoctorApp', draddress: draddr, qualification: drqual, specialization: specialization_list, errors:errors, city:city_list});   
                                   }
                           
                               });
@@ -220,6 +222,29 @@ exports.biodata_create_post =function(req,res,next){
                          console.log('Error Searching Login Database:'+ err);
                          return next(err);
                     }else{
+                        
+                      /*var transporter = nodemailer.createTransport({
+                           service:'gmail',
+                           auth:{
+                               user:'jotxworld@gmail.com',
+                               pass:'1stcl@ss'
+                           }
+                       }); 
+                       var mailOptions = {
+                           from:'jotxworld@gmail.com',
+                           to:'odedeletayo@yahoo.com',
+                           subject: 'Sending Email Using test using Node Js',
+                           text:'This is our 1st mail, I hope it was easy!'
+                       };
+                       
+                       transporter.sendMail(mailOptions, function (error, info){
+                          if(error){
+                              console.log('Error from sending email' +error);
+                                return next(error);
+                          } 
+                       });*/
+                        
+                      
                         console.log('Username is:'+ req.body.username);
                         console.log('Result is:'+result);
                         if(result=== null){
@@ -320,7 +345,8 @@ exports.biodata_create_post =function(req,res,next){
                                         console.log('Error with LocationByCity Query:' +err);
                                                 return  next(err);
                                  }
-                                    console.log('State is:' +state.state);    
+                                    console.log('State is:' +state.state);
+                                    
                                  res.render('doctor_biodata_detail',{drbiodata: drbiodata, qualification: drqualification, title: 'DoctorApp', draddress: draddress,city:city, state:state}); 
                              });
                              
@@ -372,91 +398,7 @@ exports.biodata_update_get =function(req,res, next){
                 res.render('biodata_update',{title:'Update Information',drbiodata:drbiodata});
             });
             
-    
-    /*DrBiodata.findById(req.params.id)
-            .exec(function (err,drbiodata){
-                if(err){
-                    console.log('Error Querying DrBiodata Schema: '+err);
-                    return next(err);
-                }else{
-                    DrQualification.findOne({'drbiodata': req.params.id})
-                            .populate('drareaofspecialization')
-                            .exec(function (err,qual){
-                                if(err){
-                                    console.log('Error Querying DrQualification: '+err);
-                                    return next(err);
-                                }
-                                else{
-                                    DrAddress.findOne({'drbiodata':req.params.id})
-                                            .populate('drcity')
-                                            .exec(function(err,draddress){
-                                                if(err){
-                                                    console.log('Error Querying DrAddress: '+err);
-                                                    return next (err);
-                                                }
-                                                else{
-                                                    DrLocationByCity.findOne({'_id':draddress.drcity.state})
-                                                            .exec(function (err,state){
-                                                                if(err){
-                                                                    console.log('Error Querying DrLocationByCity: '+err);
-                                                                    return next (err);
-                                                                }else{
-                                                                    DrLogin.findOne({'drbiodata':req.params.id})
-                                                                            .exec(function (err,login_details){
-                                                                                if(err){
-                                                                                    console.log('Error Querying DrLogin: '+err);
-                                                                                        return next (err);
-                                                                                }else{
-                                                                                    DrAreaOfSpecialization.find()
-                                                                                      .sort([['areaofspecialization', 'ascending']])
-                                                                                      .exec(function(err,specialization_list){
-                                                                                            if(err){
-                                                                                                        console.log('Area of specialization Error:'+err);
-                                                                                                        return next(err);
-
-                                                                                            }else{
-                                                                                               DrCity.find()
-                                                                                                   .sort([['city','ascending']])
-                                                                                                   .exec(function (err,city_list){
-                                                                                                        if(err){
-                                                                                                                        console.log('Error Querying Database:'+err);
-                                                                                                                                          return next(err);
-                                                                                                                    }else{
-                                                                                                                        res.render('biodata',{title:'Update Page',drbiodata:drbiodata, qualification: qual, specialization:specialization_list, city:city_list,drbiodatacity:draddress.drcity, special:qual.drareaofspecialization.areaofspecialization, draddress:draddress, drlogin:login_details.username}); 
-                                                                                                                         //res.render('biodata', { drbiodata: drbiodata, title: 'DoctorApp',specialization: specialization_list, state:state_list, errors:errors, city:city_list});   
-                                                                                                                    //res.render('biodata', { title: 'DoctorApp',specialization: specialization_list, state:state_list, city:city_list});
-                                                                                                                    }
-
-                              }); 
-                      
-                       //res.render('biodata', { title: 'DoctorApp',specialization: specialization_list, state:state_list});
-                  }
-              });
-                                                                                }
-                                                                            });
-                                                                }
-                                                                 console.log('State:' +state);
-                                                                  console.log('Qualification:' +qual);
-                                               
-                                                 console.log('Address:' +draddress.drcity.state);
-                                    console.log('Specialization:' +qual.drareaofspecialization.areaofspecialization);
-                                  //res.render('doctor_biodata_detail',{title:'DoctorApp',drbiodata:drbiodata, qualification:qual,specialization:qual.drareaofspecialization.areaofspecialization, draddress:draddress,city:draddress.drcity, state:state});
-                                       //res.render('biodata.pug',{title:'Update Page',drbiodata:drbiodata, qualification: qual, specialization:specialization_list, special:qual.drareaofspecialization.areaofspecialization, draddress:draddress});       
-                                                            });
-                                                
-                                                }
-                                                
-                                                
-                                            });
-                                   
-                                }
-                            });
-                    
-                }
-                //res.render('doctor_biodata_detail',{title:'DoctorApp',drbiodata:drbiodata});
-                
-            });*/
-    
+ 
    //res.send('Doctor Edit  Page NOT YET IMPLEMENTED'); 
 };
 
@@ -586,6 +528,15 @@ exports.biodata_details_get =function(req,res,next){
                 
             });
    //res.send('Doctor Biodata Details NOT YET IMPLEMENTED'); 
+};
+
+exports.get_drlogin = function (req, res, next){
+    //res.send('Login Page Not Yet Implemented');
+    res.render('doctor_login');
+};
+
+exports.post_drlogin = function (req,res,next){
+  res.send('Login Error Page Not Yet Implemented');  
 };
 
 

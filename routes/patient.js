@@ -38,7 +38,7 @@ router.get('/biodata/all', drbiodata_controller.biodata_biodatalist_get);
 
 
 
-router.get('/address/create', draddress_controller.address_create_get);
+/*router.get('/address/create', draddress_controller.address_create_get);
 
 router.post('/address/create', draddress_controller.address_create_post);
 
@@ -52,11 +52,11 @@ router.post('/address/:id/update', draddress_controller.address_update_post);
 
 router.get('/address/:id/details', draddress_controller.address_details_get);
 
-router.get('/addresslist', draddress_controller.address_addresslist_get);
+router.get('/addresslist', draddress_controller.address_addresslist_get);*/
 
 
 
-router.get('/qualification/create', drqualification_controller.qualification_create_get);
+/*router.get('/qualification/create', drqualification_controller.qualification_create_get);
 
 router.post('/qualification/create', drqualification_controller.qualification_create_post);
 
@@ -68,25 +68,9 @@ router.get('/qualification/:id/update', drqualification_controller.qualification
 
 router.post('/qualification/:id/update', drqualification_controller.qualification_update_post);
 
-router.get('/qualification/id/details', drqualification_controller.qualification_details_get);
+router.get('/qualification/id/details', drqualification_controller.qualification_details_get);*/
 
 
-
-router.get('/areaofspecialization/create', drareaofspecialization_controller.areaofspecialization_create_get);
-
-router.post('/areaofspecialization/create', drareaofspecialization_controller.areaofspecialization_create_post);
-
-router.get('/areaofspecialization/:id/delete', drareaofspecialization_controller.areaofspecialization_delete_get);
-
-router.post('/areaofspecialization/:id/delete', drareaofspecialization_controller.areaofspecialization_delete_post);
-
-router.get('/areaofspecialization/:id/update', drareaofspecialization_controller.areaofspecialization_update_get);
-
-router.post('/areaofspecialization/:id/update', drareaofspecialization_controller.areaofspecialization_update_post);
-
-router.get('/areaofspecializations', drareaofspecialization_controller.areaofspecializationlist_get);
-
-router.get('/areaofspecialization/:id',drareaofspecialization_controller.areaofspecialization_by_doctor);
 
 
 router.get('/states', drlocationbycity_controller.get_list_of_states);
@@ -96,9 +80,6 @@ router.get('/cities',drlocationbycity_controller.get_list_of_cities);
 router.get('/city/:id',draddress_controller.get_list_of_doctors_in_city);
 
 router.get('/state/:id', draddress_controller.get_list_of_doctors_in_state);
-
-router.get('/login',drbiodata_controller.get_drlogin);
-router.get('/login',drbiodata_controller.post_drlogin);
 
 
 /*router.get('/areaofspecialization/create', drareaofspecialization_controller.areaofspecialization_create_get);

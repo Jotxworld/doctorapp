@@ -8,9 +8,11 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var expressValidator = require('express-validator');
 
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 var doctor = require('./routes/doctor');
+var patient = require('./routes/patient');
 var compression  = require('compression');
 var helmet = require('helmet');
 //var registration = require('./routes/registration');
@@ -20,7 +22,7 @@ var app = express();
 
 //setup for mogoDB
 var mongoose = require('mongoose');
-var mongoDB = process.env.MONGODB_URI || 'mongodb://admin:Godisgreat@ds143071.mlab.com:43071/doctorappdb';
+var mongoDB = 'mongodb://admin:Godisgreat@ds143071.mlab.com:43071/doctorappdb';
 mongoose.connect(mongoDB);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console,'MongoDB connection error:'));
@@ -43,6 +45,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/doctor', doctor);
+app.use('/patient', patient);
 //app.use('/registration', registration);
 
 
