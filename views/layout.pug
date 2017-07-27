@@ -13,20 +13,45 @@ html(lang='en' ng-app)
     
 
   body
-    nav.container
-     ul(class='nav nav-tabs')
-      li(class='active' role='presentation')
-       a(href='/') Home
-      li(role='presentation') 
-       a(href='/doctor/biodata/registration') Registration Page
-      li(role='presentation') 
-       a(href='/catalog/authors') View Doctors
-      li(href='presentation') 
-       a(href='/catalog/genres') Contact
-      li(role='presentation') 
-       a(href='/catalog/bookinstances') Login
+   nav.container
+    nav(class='navbar navbar-inverse')
+     div(class='container-fluid')
+      div(class='navbar-header')
+       button(type='button' class='navbar-toggle' data-toggle='collapse' data-target='#myNavbar')
+        span(class='icon-bar')
+        span(class='icon-bar')
+        span(class='icon-bar')
+       a.navbar-brand(href='/') DoctorApp
+      div(class='collapse navbar-collapse' id='myNavbar')
+       ul(class='nav navbar-nav')
+        li(class='active')
+         a(href='/') 
+          span(class='glyphicon glyphicon-home') Home
+        li
+         a(href='/') 
+          span(class='glyphicon glyphicon-info-sign') About
+        li(class='dropdown')
+         a(class='dropdown-toggle' data-toggle='dropdown' href='/') 
+          span(class='glyphicon glyphicon-user') Registration
+         ul(class='dropdown-menu')
+          li
+           a(href='/doctor/biodata/registration') Medical Practitioner or Consultant
+          li
+           a(href='/') Patient
+       ul(class='nav navbar-nav navbar-right')
+        li 
+         a(href='/catalog/authors')
+          span(class='glyphicon glyphicon-phone-alt') Contact
+        li(class='dropdown') 
+         a(class='dropdown-toggle' data-toggle='dropdown')
+          span(class='glyphicon glyphicon-log-in') Login
+         ul(class='dropdown-menu')
+          li
+           a(href='/doctor/login') Doctor/Consultant
+          li
+           a(href='/') Patient
       
-    aside.container
+   aside.container
      ul.search
       li
        a(href='/doctor/areaofspecializations') Search by Specialization
@@ -37,10 +62,10 @@ html(lang='en' ng-app)
     
     
    
-       
-     block content
-     footer
-      div
-       div.container-fluid
-       h5 Courtesy: Jotx Solutions
+   div.container   
+    block content
+    footer
+     div
+      div.container-fluid
+      h5 Courtesy: Jotx Solutions
     

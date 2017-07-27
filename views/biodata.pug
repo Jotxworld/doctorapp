@@ -5,7 +5,7 @@ block content
   p Welcome to #{title}
   legend Registration Page
   section(ng-init='tab=1')
-   ul(class='nav nav-pills')
+   ul(class='nav nav-tabs')
     li(ng-class='{active: tab==1}')
      a(href ng-click='tab =1') Biodata
     li(ng-class='{active: tab==2}')
@@ -59,7 +59,7 @@ block content
         option.form-control#married(value='Married') Married
         option.form-control#widowed(value='Widowed') Widowed
      div.form-group
-      button.btn.btn-primary(type='button') Next
+      button.btn.btn-primary(type='button' ng-click= 'tab=2') Next
 
      
    div.panel(ng-show = 'tab==2')
@@ -80,8 +80,8 @@ block content
       label(for='yearsofexperience') Years Of Experience:
       input.form-control#yearsofexperience(type='number'  placeholder='Years of experience' name='yearsofexperience' min='0' max='100' value=(undefined===qualification? '':qualification.yearsofexperience),)
      div.form-group
-      button.btn.btn-primary(type='button') Back
-      button.btn.btn-primary(type='button') Next
+      button.btn.btn-primary(type='button' ng-click='tab=1') Back
+      button.pull-right.btn.btn-primary(type='button' ng-click='tab=3') Next
 
    div.panel(ng-show = 'tab==3')
      div.form-group
@@ -95,8 +95,8 @@ block content
         for spec in specialization
          option.form-control#spec(value=spec._id) #{spec.areaofspecialization}
      div.form-group
-      button.btn.btn-primary(type='button' pull-right) Back
-      button.btn.btn-primary(type='button') Next
+      button.btn.btn-primary(type='button' ng-click='tab=2') Back
+      button.pull-right.btn.btn-primary(type='button' ng-click='tab=4') Next
 
    div.panel(ng-show = 'tab==4')
      div.form-group
@@ -119,8 +119,8 @@ block content
       label(for='email_address') Email Address:
       input#email_address.form-control(type='email', placeholder='Enter Email Address' name='email_address' value=(undefined===draddress? '':draddress.dremail))
      div.form-group
-      button.btn.btn-primary(type='button') Back
-      button.btn.btn-primary#next(type='button' onclick='return checkVal()') Next
+      button.btn.btn-primary(type='button' ng-click='tab=3') Back
+      button.pull-right.btn.btn-primary#next(type='button' onclick='return checkVal()' ng-click='tab=5') Next
 
    div.panel(ng-show = 'tab==5')
      div.form-group
@@ -134,20 +134,20 @@ block content
         each cities in city
          option.form-control#abuja(value=cities._id) #{cities.city} 
      div.form-group
-      button.btn.btn-primary(type='button') Back
-      button.btn.btn-primary(type='button') Next
+      button.btn.btn-primary(type='button' ng-click='tab=4') Back
+      button.pull-right.btn.btn-primary(type='button' ng-click='tab=6') Next
       
    div.panel(ng-show = 'tab==6')
      div.form-group
       legend Account Login Details
       label(for='username') Username:
-      input.form-control#username(type='text' placeholder='Enter Your Unique Username Here' name='username' required='true' min='7' max='15' value=(undefined===drlogin? '':drlogin))
+      input.form-control#username(type='text' placeholder='Enter Your Unique Username Here' name='username' required='true' min='7' max='15')
       label(for='password') Password:
       input.form-control#password(name='password' placeholder='Enter Password Here' type='password' required='true' min='7' max='15')
       label(for='re_enter_password') Re-type Password:
       input.form-control#re_enter_password(name='re_enter_password' placeholder='Re-type Password Here' type='password' required='true' min='7' max='15')  
      div.form-group
-      button.btn.btn-primary(type='button') Back
+      button.btn.btn-primary(type='button' ng-click='tab=5') Back
    div.form-group
    button.pull-right.btn.btn-primary(type='submit') Save   
  

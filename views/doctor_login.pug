@@ -5,7 +5,7 @@ block content
   h2 Login
   form(method='POST' action='') 
    div(class='form-group')
-    label(for='username') Username:
+    label(for='username') Email:
     input.form-control#username(type='text' placeholder='Enter Your Unique Username Here' name='username' required='true' min='7' max='15')
    div.form-group 
     label(for='password') Password:
@@ -13,10 +13,10 @@ block content
    div.form-group
     label(for='re_enter_password') Re-type Password:
     input.form-control#re_enter_password(name='re_enter_password' placeholder='Re-type Password Here' type='password' required='true' min='7' max='15')  
-   div.form-
-    a(href='') Sign Up Here
    div.form-group
-    button.btn.btn-default(type='button') Submit
+    a(href='/doctor/biodata/registration') Sign Up Here
+   div.form-group
+    button.btn.btn-default(type='submit') Submit
 
    p Login to edit your details
     
