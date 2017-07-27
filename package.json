@@ -1,6 +1,9 @@
 {
   "name": "doctorapp",
   "version": "0.0.0",
+  "engines": {
+    "node": "6.10.3"
+  },
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
